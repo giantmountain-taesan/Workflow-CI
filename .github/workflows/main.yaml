@@ -22,12 +22,11 @@ jobs:
 
       - name: Run Training Directly
         run: |
-          rm -rf mlruns
-          mlflow run MLProject --env-manager=local
+          mlflow run .
 
       - name: Simpan Artefak
         if: always() # Tetap jalankan meskipun step sebelumnya error/sukses
         uses: actions/upload-artifact@v4
         with:
           name: model-hasil-retraining
-          path: MLProject/mlruns/
+          path: ML_Project/mlruns/
