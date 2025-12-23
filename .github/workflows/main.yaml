@@ -22,7 +22,7 @@ jobs:
 
       - name: Run Training Directly
         run: |
-          mlflow run ML_Project --env-manager=local
+          mlflow run ML_Project
 
       - name: Simpan Artefak
         if: always()
