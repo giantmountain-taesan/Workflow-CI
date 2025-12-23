@@ -1,0 +1,25 @@
+name: Machine Learning Workflow
+on:
+  push:
+    branches: [ main ]
+jobs:
+  training:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install Dependencies
+        run: |
+          pip install mlflow pandas scikit-learn
+      - name: Run MLflow Project
+        run: |
+          mlflow run MLProject --experiment-name "Retraining_Otomatis"
+      - name: Simpan Artefak
+        uses: actions/upload-artifact@v4
+        with:
+          name: model-hasil-retraining
+          path: mlruns/
