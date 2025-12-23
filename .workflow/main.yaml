@@ -1,0 +1,33 @@
+name: MLflow CI Workflow
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  run-mlflow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13'
+
+      - name: Install MLflow & Dependencies
+        run: |
+          pip install mlflow pandas scikit-learn
+
+      - name: Run MLflow Project
+        run: |
+          # Menjalankan folder MLProject
+          mlflow run MLProject --experiment-name "Retraining_Automation"
+
+      # --- BAGIAN SKILLED (Simpan Artefak ke GitHub) ---
+      - name: Upload Model Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Trained-Model
+          path: mlruns/
