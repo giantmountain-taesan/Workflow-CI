@@ -25,7 +25,7 @@ jobs:
           # Menjalankan folder MLProject
           mlflow run MLProject --experiment-name "Retraining_Automation"
 
-      # --- BAGIAN SKILLED (Simpan Artefak ke GitHub) ---
+      # --- Simpan Artefak ke GitHub ---
       - name: Upload Model Artifacts
         uses: actions/upload-artifact@v4
         with:
