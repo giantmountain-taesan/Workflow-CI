@@ -22,9 +22,7 @@ jobs:
 
       - name: Run Training Directly
         run: |
-          # Masuk ke folder MLProject lalu jalankan scriptnya
-          cd MLProject
-          python modelling.py
+          mlflow run .
 
       - name: Simpan Artefak
         if: always() # Tetap jalankan meskipun step sebelumnya error/sukses
