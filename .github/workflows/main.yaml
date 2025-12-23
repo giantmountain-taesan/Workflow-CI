@@ -22,11 +22,12 @@ jobs:
 
       - name: Run Training Directly
         run: |
-          # Hapus folder mlruns lama di mana pun berada agar tidak ada ID yang nyangkut
+          # Sapu bersih semua folder mlruns di seluruh direktori
           rm -rf mlruns
           rm -rf ML_Project/mlruns
           
-          # Jalankan perintah MLflow
+          # Jalankan tanpa dipengaruhi environment lama
+          export MLFLOW_TRACKING_URI=file:$(pwd)/mlruns
           mlflow run ML_Project --env-manager=local
 
       - name: Simpan Artefak
