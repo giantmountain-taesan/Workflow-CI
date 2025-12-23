@@ -1,25 +1,34 @@
 name: Machine Learning Workflow
+
 on:
   push:
     branches: [ main ]
+
 jobs:
   training:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+      
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+
       - name: Install Dependencies
         run: |
           pip install mlflow pandas scikit-learn
-      - name: Run MLflow Project
+
+      - name: Run Training Directly
         run: |
-          mlflow run MLProject --experiment-name "Retraining_Otomatis"
+          # Masuk ke folder MLProject lalu jalankan scriptnya
+          cd MLProject
+          python modelling.py
+
       - name: Simpan Artefak
+        if: always() # Tetap jalankan meskipun step sebelumnya error/sukses
         uses: actions/upload-artifact@v4
         with:
           name: model-hasil-retraining
-          path: mlruns/
+          path: MLProject/mlruns/
