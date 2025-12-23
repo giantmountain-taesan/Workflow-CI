@@ -22,7 +22,7 @@ jobs:
 
       - name: Run Training Directly
         run: |
-          mlflow run .
+          mlflow run MLProject/ --no-conda
 
       - name: Simpan Artefak
         if: always() # Tetap jalankan meskipun step sebelumnya error/sukses
