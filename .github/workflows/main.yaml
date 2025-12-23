@@ -22,11 +22,11 @@ jobs:
 
       - name: Run Training Directly
         run: |
-          # Sapu bersih semua folder mlruns di seluruh direktori
+          # Menghapus semua folder mlruns di seluruh direktori
           rm -rf mlruns
           rm -rf ML_Project/mlruns
           
-          # Jalankan tanpa dipengaruhi environment lama
+          # JRunning tanpa dipengaruhi environment lama
           export MLFLOW_TRACKING_URI=file:$(pwd)/mlruns
           mlflow run ML_Project --env-manager=local
 
