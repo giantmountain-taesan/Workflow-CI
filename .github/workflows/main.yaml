@@ -22,6 +22,7 @@ jobs:
 
       - name: Run Training Directly
         run: |
+          rm -rf mlruns
           mlflow run MLProject --env-manager=local
 
       - name: Simpan Artefak
